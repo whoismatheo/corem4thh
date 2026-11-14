@@ -1,43 +1,43 @@
 # corem4thh
 
-Sitio estático del estudio digital independiente corem4thh. HTML, CSS y JavaScript con módulos ES, sin dependencias ni paso de compilación.
+Static website for corem4thh, an independent digital studio. Plain HTML, CSS and JavaScript (ES modules), with no dependencies and no build step.
 
-## Estructura
+## Structure
 
-- `index.html` — estructura semántica y secciones fijas (hero, contacto, pie)
-- `css/styles.css` — estilos y diseño responsive
-- `js/content.js` — contenido editable: servicios, stack y proceso
-- `js/components.js` — componentes que convierten ese contenido en HTML
-- `js/main.js` — render, menú móvil, animaciones de entrada y navegación activa
-- `js/sculpture.js` — escultura metálica del hero (WebGL, sin librerías)
-- `vercel.json` — configuración de Vercel (caché de assets y cabeceras)
+- `index.html`: semantic markup and fixed sections (hero, contact, footer)
+- `css/styles.css`: styles and responsive layout
+- `js/content.js`: editable content (services, stack and process)
+- `js/components.js`: components that turn that content into HTML
+- `js/main.js`: rendering, mobile menu, entrance animations and active navigation
+- `js/sculpture.js`: metallic hero sculpture (WebGL, no libraries)
+- `vercel.json`: Vercel configuration (asset caching and headers)
 
-## Desarrollo local
+## Local development
 
-Los módulos ES requieren un servidor (no abre con doble clic):
+ES modules need a server (opening the file directly won't work):
 
     npx serve .
-    # o
+    # or
     python3 -m http.server 8000
 
-## Editar contenido
+## Editing content
 
-- Servicios y proceso: edita los arreglos `services` y `workflow` en `js/content.js`.
-- Stack: el arreglo `stack` en `js/content.js` está vacío a propósito. Mientras esté vacío, la sección y su enlace del menú no se muestran. Añade solo tecnologías que domines de verdad, por ejemplo:
+- Services and process: edit the `services` and `workflow` arrays in `js/content.js`.
+- Stack: the `stack` array in `js/content.js` is intentionally empty. While it is empty, the section and its menu link are hidden. Only add technologies you genuinely work with, for example:
 
       { name: "javascript", note: "language", glyph: "js" }
 
-  Al añadir la primera, la sección aparece sola.
-- Enlaces de Discord y GitHub: están en `index.html` (menú, contacto y pie).
+  As soon as you add the first one, the section appears on its own.
+- Discord and GitHub links: they live in `index.html` (menu, contact section and footer).
 
-## Despliegue
+## Deployment
 
-Vercel: importa el repositorio en vercel.com, Framework Preset "Other", sin build command y con el directorio de salida vacío. `vercel.json` ya está configurado.
+Vercel: import the repository at vercel.com, set Framework Preset to "Other", leave the build command and output directory empty. `vercel.json` is already configured.
 
-Netlify: arrastra la carpeta o conecta el repositorio; sin build command y con publish directory `.`.
+Netlify: drag the folder in or connect the repository; no build command, publish directory `.`.
 
-GitHub Pages: Settings → Pages → Deploy from a branch → `main` y `/ (root)`. Todas las rutas son relativas, así que funciona también en subcarpetas.
+GitHub Pages: Settings → Pages → Deploy from a branch → `main` and `/ (root)`. All paths are relative, so it also works from a subfolder.
 
-## Fuentes
+## Fonts
 
-Usa Geist o Inter si están instaladas y, si no, la fuente del sistema. Para autoalojar Geist, añade los `.woff2` en `assets/fonts` y declara `@font-face` en `css/styles.css`.
+The site uses Geist or Inter when installed and falls back to the system font. To self-host Geist, add the `.woff2` files to `assets/fonts` and declare `@font-face` in `css/styles.css`.
