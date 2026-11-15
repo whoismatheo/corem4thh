@@ -1,5 +1,6 @@
 import { serviceItem, techGroup } from "./components.js";
 import { services, stack } from "./content.js";
+import { initCopyLinks } from "./copy.js";
 import { applyLanguage, saveLanguage, storedLanguage, translate } from "./i18n/index.js";
 import { initLanguageMenu } from "./lang-menu.js";
 import { initCursor, initHero, initNav, initReveal, initTouchLive, splitWords } from "./motion.js";
@@ -80,6 +81,7 @@ document.addEventListener("keydown", (event) => event.key === "Escape" && setOpe
 document.addEventListener("click", (event) => !header.contains(event.target) && setOpen(false));
 window.matchMedia("(min-width: 861px)").addEventListener("change", (event) => event.matches && setOpen(false));
 
+initCopyLinks(() => language);
 initReveal();
 initHero();
 initCursor();

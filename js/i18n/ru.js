@@ -16,7 +16,12 @@ export default {
   },
   "social": {
     "discord": "профиль discord",
+    "discordCopy": "профиль discord · копирует мой ник",
     "github": "профиль github"
+  },
+  "toast": {
+    "copied": "ник скопирован",
+    "manual": "мой ник в discord"
   },
   "theme": {
     "toLight": "включить светлую тему",

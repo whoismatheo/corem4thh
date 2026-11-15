@@ -80,3 +80,12 @@ test("every technology has a logo", async () => {
   const { techLogos: techLogo } = await import("../js/logos.js");
   for (const group of stack) for (const name of group.items) assert.ok(techLogo[name], name);
 });
+
+test("discord icon copies the username and every language has the notice texts", () => {
+  const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+  assert.match(html, /data-copy="m4thhd3v"/);
+  assert.match(html, /id="toast"/);
+  for (const { code, dictionary } of languages) {
+    assert.ok(dictionary.toast.copied && dictionary.toast.manual && dictionary.social.discordCopy, code);
+  }
+});

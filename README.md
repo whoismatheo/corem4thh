@@ -51,7 +51,7 @@ Dark is the default. The choice is stored in `localStorage` (`corem-theme`) and 
 
 - Services: ids live in `js/content.js`, their texts in each language file; each id needs an illustration in `js/icons.js`.
 - About me: `about.*` keys in every dictionary.
-- Discord and GitHub: the two profile links appear only as icons, in the navbar and in the contact section. Update the URLs in `index.html`.
+- Discord and GitHub: the profile links appear only as icons in the contact section. The Discord icon also copies the username set in its `data-copy` attribute (`index.html`) and shows a short translated notice (`toast.*` keys), because profile links by ID don't open for every account. Update the URLs and the username in `index.html`.
 
 ## Fonts
 

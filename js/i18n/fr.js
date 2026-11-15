@@ -16,7 +16,12 @@ export default {
   },
   "social": {
     "discord": "profil discord",
+    "discordCopy": "profil discord · copie mon pseudo",
     "github": "profil github"
+  },
+  "toast": {
+    "copied": "pseudo copié",
+    "manual": "mon pseudo discord"
   },
   "theme": {
     "toLight": "passer au thème clair",
