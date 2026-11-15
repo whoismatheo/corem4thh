@@ -1,32 +1,71 @@
 export default {
-  meta: {
-    title: "corem4thh — made to explore.",
-    description: "websites, software, automation and web3 by m4thh, an independent developer.",
+  "meta": {
+    "title": "corem4thh — made to explore.",
+    "description": "Digital solutions, built with purpose. Web, software, automation and Web3 by m4thh."
   },
-  nav: { label: "main", home: "home", services: "services", about: "about me", contact: "contact", menuOpen: "open menu", menuClose: "close menu", language: "language", skip: "skip to content" },
-  social: { discord: "discord profile", github: "github profile" },
-  theme: { toLight: "switch to light theme", toDark: "switch to dark theme" },
-  hero: {
-    status: "open to new projects",
-    title: "made to explore.",
-    text: "websites, software, automation and web3 — built with intent.",
-    cta: "explore services",
+  "nav": {
+    "label": "main",
+    "services": "Services",
+    "stack": "Stack",
+    "about": "About",
+    "contact": "Contact",
+    "menuOpen": "open menu",
+    "menuClose": "close menu",
+    "language": "language",
+    "skip": "skip to content"
   },
-  services: {
-    label: "services",
-    title: "four ways to bring an idea to life.",
-    items: {
-      web: { name: "web development", text: "fast, responsive sites that scale with you." },
-      software: { name: "software development", text: "custom tools built around how you actually work." },
-      automation: { name: "automation", text: "integrations that take repetitive tasks off your plate." },
-      web3: { name: "web3 development", text: "decentralized apps and on-chain integrations." },
-    },
+  "social": {
+    "discord": "discord profile",
+    "github": "github profile"
   },
-  about: {
-    title: "a little about me.",
-    intro: "I'm m4thh — an independent developer with a curiosity for technology, design, and everything in between.",
-    body: "I enjoy exploring ideas, experimenting with different technologies, and turning concepts into digital experiences.",
-    closing: "For me, it's not just about making things work. It's about making them feel right, too.",
+  "theme": {
+    "toLight": "switch to light theme",
+    "toDark": "switch to dark theme"
   },
-  contact: { label: "contact", title: "have something in mind?", text: "i'd be happy to hear about it." },
+  "hero": {
+    "label": "INDEPENDENT DEVELOPER / DIGITAL ENGINEERING",
+    "title": "made to explore.",
+    "text": "Digital solutions, built with purpose.",
+    "cta": "explore services"
+  },
+  "services": {
+    "title": "Selected services",
+    "items": {
+      "web": {
+        "name": "Web development",
+        "text": "Building functional, responsive and carefully designed digital experiences."
+      },
+      "software": {
+        "name": "Software development",
+        "text": "Developing software and digital tools with practical functionality."
+      },
+      "automation": {
+        "name": "Automation",
+        "text": "Connecting systems and simplifying workflows through automation."
+      },
+      "web3": {
+        "name": "Web3",
+        "text": "Exploring and developing blockchain-based digital solutions."
+      }
+    }
+  },
+  "stack": {
+    "title": "Technologies",
+    "groups": {
+      "frontend": "Frontend",
+      "backend": "Backend & Database",
+      "deploy": "Development & Deployment",
+      "integrations": "Integrations"
+    }
+  },
+  "about": {
+    "title": "A little about me.",
+    "intro": "I'm m4thh — an independent developer with a curiosity for technology, design, and everything in between.",
+    "body": "I enjoy exploring ideas, experimenting with different technologies, and turning concepts into digital experiences.",
+    "closing": "For me, it's not just about making things work. It's about making them feel right, too."
+  },
+  "contact": {
+    "title": "Have something in mind?",
+    "text": "I'd be happy to hear about it."
+  }
 };

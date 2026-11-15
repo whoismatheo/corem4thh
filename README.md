@@ -5,13 +5,15 @@ Static website for an independent digital studio. Plain HTML, CSS and JavaScript
 ## Structure
 
 - `index.html`: semantic markup, home, services, about me and contact, plus the SVG icon sprite
-- `css/styles.css`: design tokens, dark and light themes, the Living Gradient (`.ambient`), layout and responsive rules
+- `css/styles.css`: design tokens (graphite / off-white monochrome), layout, responsive rules and the motion system
 - `js/content.js`: editable list of services
 - `js/i18n/`: one file per language plus `index.js` (language list, lookup and DOM update)
-- `js/components.js` and `js/icons.js`: render the services and their interface illustrations (inline SVG)
+- `js/components.js`, `js/icons.js`: services, technologies and the four monochrome interface illustrations (inline SVG)
+- `js/schematic.js`: hero engineering schematic (SVG, generated)
+- `js/motion.js`: hero sequence and pointer response, nav indicator, reveals, cursor ring, touch states
 - `js/theme.js`: light and dark switch with a saved preference
 - `js/lang-menu.js`: accessible language selector
-- `js/main.js`: wiring, mobile menu, entrance animations, active navigation and the scroll drift of the Living Gradient
+- `js/main.js`: wiring, mobile menu, entrance animations, active navigation and boot order
 - `vercel.json`: Vercel configuration (asset caching and headers)
 - `tests/i18n.test.mjs`: checks that every language has the same keys
 
@@ -36,9 +38,9 @@ To add a language:
 
 Every visible string lives in the dictionaries. Elements are bound with `data-i18n="section.key"` and attributes with `data-i18n-attr="aria-label:section.key"`.
 
-## Living Gradient
+## Motion system
 
-Five soft radial layers in `.ambient` (fixed, behind all sections). Colors are the `--gc1..5` tokens per theme; drift and opacity animations are 60–150 s and run on the compositor only (transform and opacity). The scroll position shifts the layers through `--p`. Disabled with `prefers-reduced-motion`.
+One easing (`--ease`), transform/opacity first, no libraries. Each section enters differently on purpose: hero (word masks + schematic line drawing), rules (line draw), services (horizontal wipe per column), stack (row lines + wipes), about (vertical rule + downward wipes), contact (icon wipes). Hover states on service cards are mirrored on touch devices by `.live` (card centred in the viewport). Everything is disabled by `prefers-reduced-motion`; a 3.5 s failsafe (`html.safe`) shows all content if the script fails.
 
 ## Themes
 

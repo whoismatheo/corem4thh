@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { stack, services } from "../js/content.js";
 import { test } from "node:test";
 import { languages } from "../js/i18n/index.js";
 
@@ -47,4 +48,30 @@ test("brand names are not translated", () => {
   for (const { code, dictionary } of languages) {
     assert.match(dictionary.meta.title, /^corem4thh/, code);
   }
+});
+
+test("stack is exactly the requested technologies and every group has a label", () => {
+  assert.deepEqual(
+    stack.map((group) => group.items),
+    [["HTML", "CSS", "JavaScript"], ["Supabase"], ["Git", "GitHub", "Vercel"], ["APIs"]],
+  );
+  for (const { code, dictionary } of languages) {
+    for (const group of stack) assert.ok(dictionary.stack.groups[group.id], `${code}:${group.id}`);
+    for (const service of services) assert.ok(dictionary.services.items[service.id].text, `${code}:${service.id}`);
+  }
+});
+
+test("contact uses Discord and GitHub only, never LinkedIn", () => {
+  const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+  assert.doesNotMatch(html, /linkedin/i);
+  assert.match(html, /discord\.com\/users\//);
+  assert.match(html, /github\.com\//);
+});
+
+test("hero headline and fixed copy stay intact in English", () => {
+  const en = languages.find((l) => l.code === "en").dictionary;
+  assert.equal(en.hero.title, "made to explore.");
+  assert.equal(en.hero.label, "INDEPENDENT DEVELOPER / DIGITAL ENGINEERING");
+  assert.equal(en.hero.text, "Digital solutions, built with purpose.");
+  assert.equal(en.about.title, "A little about me.");
 });

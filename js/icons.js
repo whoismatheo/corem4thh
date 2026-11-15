@@ -1,138 +1,105 @@
-const defs = (id) => `<defs>
-  <filter id="sh-${id}" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#000" flood-opacity=".34"/></filter>
-  <linearGradient id="g-${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" class="st-a"/><stop offset="1" class="st-b"/></linearGradient>
-  <linearGradient id="v-${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="st-a" stop-opacity=".45"/><stop offset="1" class="st-a" stop-opacity="0"/></linearGradient>
-  <clipPath id="c-${id}">WIN</clipPath>
-</defs>`;
+const T = (x, y, s, o = 1, extra = "") => `<text x="${x}" y="${y}" font-size="${s}" opacity="${o}" ${extra}>`;
 
-const win = (id, x, y, w, h) => {
-  const rect = `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14"/>`;
-  return {
-    defs: defs(id).replace("WIN", rect),
-    base: `<g filter="url(#sh-${id})"><rect class="m-bg" x="${x}" y="${y}" width="${w}" height="${h}" rx="14"/></g>`,
-    edge: `<rect class="m-ln" x="${x + 0.5}" y="${y + 0.5}" width="${w - 1}" height="${h - 1}" rx="14"/>`,
-    dots: [18, 34, 50].map((d) => `<circle class="m-d" opacity=".55" cx="${x + d}" cy="${y + 18}" r="4"/>`).join(""),
-  };
-};
+const web = `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<defs><pattern id="ht-w" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V6" class="hl"/></pattern><clipPath id="cp-w"><rect x="17" y="43" width="366" height="240"/></clipPath></defs>
+<rect class="sf" x="16.5" y="16.5" width="367" height="267"/><path class="st" d="M16 42.5H384"/>
+<circle class="st" cx="30" cy="29" r="3.5"/><circle class="st" cx="42" cy="29" r="3.5"/><circle class="st" cx="54" cy="29" r="3.5"/>
+<rect class="st" x="86.500" y="22.500" width="228" height="14"/>${T(200, 32.5, 8.5, 0.6, 'text-anchor="middle"')}example.dev</text>
+<g clip-path="url(#cp-w)"><g class="pg">
+ <rect x="34" y="54" width="10" height="10" fill="currentColor"/><rect x="50" y="57" width="30" height="4" opacity=".7" fill="currentColor"/>
+ <rect x="250" y="58" width="22" height="3" opacity=".35" fill="currentColor"/><rect x="282" y="58" width="22" height="3" opacity=".35" fill="currentColor"/><rect x="314" y="58" width="22" height="3" opacity=".35" fill="currentColor"/><rect class="st" x="347.500" y="51.500" width="26" height="16"/>
+ <path class="st" d="M17 76.500H383"/>
+ ${T(34, 118, 30, 1, 'font-weight="600" letter-spacing="-1" style="font-family:var(--display)"')}Crafted for</text>
+ ${T(34, 150, 30, 0.45, 'font-weight="600" letter-spacing="-1" style="font-family:var(--display)"')}the web.</text>
+ <rect x="34" y="168" width="172" height="4" opacity=".35" fill="currentColor"/><rect x="34" y="178" width="138" height="4" opacity=".2" fill="currentColor"/>
+ <rect x="34" y="196" width="74" height="22" fill="currentColor"/>${T(71, 210.500, 9.5, 1, 'text-anchor="middle" class="inv" font-weight="600"')}Start</text>
+ <rect class="st" x="116.500" y="196.500" width="74" height="21"/>${T(153.500, 210.500, 9.5, 0.8, 'text-anchor="middle"')}Docs</text>
+ <rect class="st" x="246.500" y="90.500" width="122" height="128" fill="url(#ht-w)"/><path class="st" d="M246 90l122 128M368 90L246 218" opacity=".5"/>
+ <rect class="sf thumb" x="258.500" y="164.500" width="98" height="44"/><rect class="st thumb" x="258.500" y="164.500" width="98" height="44"/>
+ <rect class="thumb" x="268" y="174" width="40" height="4" fill="currentColor" opacity=".8"/><rect class="thumb" x="268" y="184" width="70" height="3" fill="currentColor" opacity=".35"/><rect class="thumb" x="268" y="192" width="54" height="3" fill="currentColor" opacity=".35"/>
+ <path class="st" d="M17 238.500H383"/>
+ <rect class="st" x="34.500" y="252.500" width="8" height="8"/><rect x="50" y="253" width="60" height="4" opacity=".8" fill="currentColor"/><rect x="50" y="262" width="90" height="3" opacity=".3" fill="currentColor"/>
+ <rect class="st" x="162.500" y="252.500" width="8" height="8"/><rect x="178" y="253" width="50" height="4" opacity=".8" fill="currentColor"/><rect x="178" y="262" width="80" height="3" opacity=".3" fill="currentColor"/>
+ <rect class="st" x="290.500" y="252.500" width="8" height="8"/><rect x="306" y="253" width="56" height="4" opacity=".8" fill="currentColor"/><rect x="306" y="262" width="62" height="3" opacity=".3" fill="currentColor"/>
+ <path class="st" d="M17 296.500H383"/><rect x="34" y="312" width="150" height="9" fill="currentColor" opacity=".85"/><rect x="34" y="330" width="260" height="4" fill="currentColor" opacity=".3"/>
+ <rect class="st" x="34.500" y="350.500" width="100" height="60" fill="url(#ht-w)"/><rect class="st" x="146.500" y="350.500" width="100" height="60" fill="url(#ht-w)"/><rect class="st" x="258.500" y="350.500" width="100" height="60" fill="url(#ht-w)"/>
+</g></g>
+<rect class="st" x="377.500" y="50.500" width="3" height="52" opacity=".6"/><rect class="thumbbar" x="377" y="52" width="4" height="16" fill="currentColor" opacity=".7"/>
+<rect class="st" x="16.500" y="16.500" width="367" height="267"/></svg>`;
 
-const code = (lines, x, y, step) =>
-  lines
-    .map((parts, index) => {
-      const spans = parts.map(([cls, text]) => `<tspan class="${cls}">${text.replace(/ /g, "\u00a0")}</tspan>`).join("");
-      return `<text x="${x}" y="${y + index * step}" font-size="13">${spans}</text>`;
-    })
-    .join("");
+const code = [
+  [["kw", "import"], ["pl", " { db } "], ["kw", "from"], ["sg", ' "./db"'], ["pl", ";"]],
+  [],
+  [["kw", "export async function"], ["fn", " sync"], ["pl", "() {"]],
+  [["pl", "  "], ["kw", "const"], ["pl", " rows = "], ["kw", "await"], ["fn", " db.all"], ["pl", "();"]],
+  [["pl", "  "], ["kw", "for"], ["pl", " ("], ["kw", "const"], ["pl", " r "], ["kw", "of"], ["pl", " rows) {"]],
+  [["pl", "    "], ["kw", "await"], ["fn", " push"], ["pl", "(r.id, r.data);"]],
+  [["pl", "  }"]],
+  [["pl", "  "], ["kw", "return"], ["pl", " rows.length;"]],
+  [["pl", "}"]],
+  [["kw", "export const"], ["pl", " ready = "], ["kw", "true"], ["pl", ";"]],
+];
+const lines = code
+  .map((parts, i) => {
+    const spans = parts.map(([c, t]) => `<tspan class="${c}">${t.replace(/ /g, "\u00a0")}</tspan>`).join("");
+    const y = 64 + i * 16.5;
+    return `<text x="100" y="${y}" font-size="8.5" text-anchor="end" opacity=".3">${i + 1}</text><text x="110" y="${y}" font-size="10">${spans}</text>`;
+  })
+  .join("");
 
-const web = (() => {
-  const w = win("web", 36, 32, 568, 340);
-  const card = (x, tone) =>
-    `<rect class="m-s" x="${x}" y="292" width="170" height="62" rx="10"/><circle cx="${x + 24}" cy="316" r="9" fill="url(#g-web)" opacity="${tone}"/><rect class="m-t" x="${x + 44}" y="308" width="64" height="6" rx="3" opacity=".8"/><rect class="m-d" x="${x + 44}" y="322" width="96" height="5" rx="2.5" opacity=".45"/><rect class="m-d" x="${x + 16}" y="338" width="130" height="4" rx="2" opacity=".3"/>`;
-  return `<svg viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice">${w.defs}${w.base}
-<g clip-path="url(#c-web)">
-  <rect class="m-s" x="36" y="32" width="568" height="36"/>${w.dots}
-  <rect class="m-s2" x="190" y="40" width="260" height="20" rx="10"/><text class="m-d" x="320" y="54" font-size="11" text-anchor="middle">example.com</text>
-  <circle cx="62" cy="90" r="8" fill="url(#g-web)"/><text class="m-t" x="78" y="94" font-size="12" font-weight="700">Brand</text>
-  <rect class="m-d" x="400" y="88" width="34" height="5" rx="2.5" opacity=".5"/><rect class="m-d" x="444" y="88" width="34" height="5" rx="2.5" opacity=".5"/><rect class="m-d" x="488" y="88" width="34" height="5" rx="2.5" opacity=".5"/>
-  <rect x="540" y="78" width="48" height="20" rx="10" fill="url(#g-web)"/>
-  <text class="m-t" x="62" y="152" font-size="30" font-weight="700" letter-spacing="-1">Launch with</text>
-  <text x="62" y="186" font-size="30" font-weight="700" letter-spacing="-1" fill="url(#g-web)">confidence.</text>
-  <rect class="m-d" x="62" y="206" width="214" height="6" rx="3" opacity=".45"/><rect class="m-d" x="62" y="220" width="168" height="6" rx="3" opacity=".3"/>
-  <rect x="62" y="242" width="96" height="28" rx="14" fill="url(#g-web)"/><text x="110" y="260" font-size="11" font-weight="600" text-anchor="middle" fill="#fff">Get started</text>
-  <rect class="m-ln" x="168.5" y="242.5" width="84" height="27" rx="13.5"/><text class="m-t" x="210" y="260" font-size="11" text-anchor="middle">Learn more</text>
-  <rect x="340" y="112" width="244" height="164" rx="14" fill="url(#g-web)" opacity=".9"/>
-  <rect class="m-bg" x="360" y="132" width="132" height="76" rx="10" opacity=".92"/>
-  <rect class="m-t" x="374" y="146" width="56" height="6" rx="3" opacity=".8"/><rect class="m-d" x="374" y="160" width="96" height="5" rx="2.5" opacity=".5"/>
-  <path d="M374 196l18-16 16 8 22-22 20 12" fill="none" stroke="var(--m-g)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect class="m-bg" x="470" y="200" width="98" height="60" rx="10" opacity=".92"/>
-  <circle cx="500" cy="230" r="15" fill="none" class="m-ln" stroke-width="4"/><path d="M500 215a15 15 0 1 1-14.3 19.6" fill="none" stroke="var(--m-g)" stroke-width="4" stroke-linecap="round"/>
-  <text class="m-t" x="500" y="234" font-size="11" font-weight="700" text-anchor="middle">98</text><text class="m-d" x="524" y="226" font-size="9">Perf</text><text class="m-g" x="524" y="240" font-size="9" font-weight="600">+12%</text>
-  ${card(62, 1)}${card(246, 0.8)}${card(430, 0.6)}
-</g>${w.edge}</svg>`;
-})();
+const software = `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<rect class="sf" x="16.500" y="16.500" width="367" height="267"/>
+<path class="st" d="M16 40.500H384M96.500 40V232M16 232.500H384M16 268.500H384"/>
+<rect class="bgc" x="60" y="17" width="82" height="23"/>${T(76, 32, 9.5, 1)}sync.ts</text><circle cx="68" cy="28.500" r="2" fill="currentColor"/>${T(156, 32, 9.5, 0.4)}db.ts</text>${T(204, 32, 9.5, 0.4)}api.ts</text>
+${T(28, 58, 7.5, 0.4, 'letter-spacing="1.2"')}EXPLORER</text>
+<rect x="17" y="85" width="79" height="17" fill="currentColor" opacity=".1"/><rect x="17" y="85" width="2" height="17" fill="currentColor"/>
+${T(30, 77, 9.5, 0.55)}src</text>${T(30, 98, 9.5, 1)}sync.ts</text>${T(30, 115, 9.5, 0.55)}db.ts</text>${T(30, 132, 9.5, 0.55)}api.ts</text>${T(30, 149, 9.5, 0.55)}utils.ts</text>
+<rect class="hlrow" x="97" y="${64 + 5 * 16.5 - 12}" width="240" height="16.500" fill="currentColor" opacity=".08"/>
+${lines}
+<rect class="cover" x="97" y="${64 + 9 * 16.5 - 12}" width="240" height="17" style="fill:var(--surface)"/>
+<rect class="caret" x="${110 + 10.5 * 6}" y="${64 + 9 * 16.5 - 10}" width="1.600" height="12" fill="currentColor"/>
+<g opacity=".4"><rect x="352" y="52" width="24" height="2" fill="currentColor"/><rect x="352" y="58" width="16" height="2" fill="currentColor"/><rect x="352" y="64" width="22" height="2" fill="currentColor"/><rect x="352" y="70" width="12" height="2" fill="currentColor"/><rect x="352" y="76" width="20" height="2" fill="currentColor"/><rect x="352" y="82" width="8" height="2" fill="currentColor"/></g>
+${T(110, 246, 8.5, 0.5)}$ npm run build</text>${T(110, 261, 8.5, 0.85)}✓ built in 1.2s</text>
+<rect x="17" y="269" width="366" height="14" fill="currentColor" opacity=".9"/>${T(28, 279, 8, 1, 'class="inv"')}main</text>${T(286, 279, 8, 1, 'class="inv"')}TypeScript</text>${T(344, 279, 8, 1, 'class="inv"')}Ln 6</text>
+<rect class="st" x="16.500" y="16.500" width="367" height="267"/></svg>`;
 
-const software = (() => {
-  const w = win("sw", 24, 24, 432, 432);
-  const row = (n, y, cls, name, active) =>
-    `${active ? `<rect x="24" y="${y - 14}" width="106" height="22" class="m-s2"/>` : ""}<rect class="${cls}" x="38" y="${y - 6}" width="8" height="8" rx="2"/><text class="${active ? "m-t" : "m-d"}" x="54" y="${y + 2}" font-size="11">${name}</text>`;
-  const lines = [
-    [["k", "import"], ["m-t", " { db } "], ["k", "from"], ["s", ' "./db"'], ["m-t", ";"]],
-    [],
-    [["k", "export async function"], ["f", " sync"], ["m-t", "() {"]],
-    [["m-t", "  "], ["k", "const"], ["m-t", " rows = "], ["k", "await"], ["m-t", " db."], ["f", "all"], ["m-t", "();"]],
-    [["m-t", "  "], ["k", "for"], ["m-t", " ("], ["k", "const"], ["m-t", " r "], ["k", "of"], ["m-t", " rows) {"]],
-    [["m-t", "    "], ["k", "await"], ["f", " push"], ["m-t", "(r.id, r.data);"]],
-    [["m-t", "  }"]],
-    [["m-t", "  "], ["k", "return"], ["m-t", " rows.length;"]],
-    [["m-t", "}"]],
-  ];
-  const numbers = lines.map((_, i) => `<text class="m-d" x="156" y="${92 + i * 22}" font-size="11" text-anchor="end" opacity=".6">${i + 1}</text>`).join("");
-  return `<svg viewBox="0 0 480 480" preserveAspectRatio="xMidYMid slice">${w.defs}${w.base}
-<g clip-path="url(#c-sw)">
-  <rect class="m-s" x="24" y="24" width="432" height="34"/>${w.dots}
-  <rect class="m-bg" x="96" y="32" width="92" height="26" rx="6"/><circle class="m-a" cx="108" cy="45" r="3"/><text class="m-t" x="118" y="49" font-size="11">sync.ts</text>
-  <text class="m-d" x="204" y="49" font-size="11">db.ts</text><text class="m-d" x="256" y="49" font-size="11">api.ts</text>
-  <rect class="m-s" x="24" y="58" width="106" height="366"/><text class="m-d" x="38" y="80" font-size="9" letter-spacing="1.2">EXPLORER</text>
-  ${row(0, 106, "m-w", "src", false)}${row(1, 130, "m-a", "sync.ts", true)}${row(2, 154, "m-b", "db.ts", false)}${row(3, 178, "m-b", "api.ts", false)}${row(4, 202, "m-g", "utils.ts", false)}
-  <rect class="m-s2" x="130" y="${92 + 5 * 22 - 15}" width="326" height="22" opacity=".7"/>
-  <rect class="m-a" x="130" y="${92 + 5 * 22 - 15}" width="2" height="22"/>
-  ${numbers}${code(lines, 168, 92, 22)}
-  <rect fill="url(#g-sw)" x="386" y="${92 + 5 * 22 - 11}" width="1.6" height="15"/>
-  <rect class="m-ln" x="130" y="306" width="326" height="118"/><rect class="m-s" x="130" y="306" width="326" height="22"/><text class="m-d" x="146" y="321" font-size="9" letter-spacing="1.2">TERMINAL</text>
-  <text class="m-t" x="146" y="348" font-size="12"><tspan class="m-g">$</tspan> npm run build</text>
-  <text class="m-g" x="146" y="368" font-size="12">✓ compiled 42 modules in 1.2s</text><text class="m-g" x="146" y="388" font-size="12">✓ 18 tests passed</text><text class="m-d" x="146" y="408" font-size="12">watching for changes…</text>
-  <rect x="24" y="424" width="432" height="32" fill="url(#g-sw)"/>
-  <text x="40" y="444" font-size="11" fill="#fff" font-weight="600">main</text><text x="300" y="444" font-size="11" fill="#fff" opacity=".9">TypeScript</text><text x="376" y="444" font-size="11" fill="#fff" opacity=".9">Ln 6</text>
-</g>${w.edge}</svg>`;
-})();
+const node = (x, y, title, sub, glyph) =>
+  `<g class="nd"><rect class="sf" x="${x}" y="${y}" width="92" height="42"/><rect class="st ndl" x="${x + 0.5}" y="${y + 0.5}" width="91" height="41"/>
+<rect class="st" x="${x + 9.5}" y="${y + 10.5}" width="20" height="20"/><g class="gl" transform="translate(${x + 19.5} ${y + 20.5})" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="square">${glyph}</g>
+${T(x + 38, y + 20, 10, 1, 'font-weight="600"')}${title}</text>${T(x + 38, y + 32, 8, 0.5)}${sub}</text>
+<circle class="bgc" cx="${x}" cy="${y + 21}" r="3" stroke="currentColor" stroke-width="1"/><circle class="bgc" cx="${x + 92}" cy="${y + 21}" r="3" stroke="currentColor" stroke-width="1"/></g>`;
+const wire = (d) => `<path d="${d}" pathLength="100" class="wr"/><path d="${d}" pathLength="100" class="pk"/>`;
 
-const automation = (() => {
-  const w = win("au", 24, 24, 592, 432);
-  const node = (x, y, title, sub, glyph) =>
-    `<g><rect class="m-s" x="${x}" y="${y}" width="140" height="64" rx="12"/><rect class="m-ln" x="${x + 0.5}" y="${y + 0.5}" width="139" height="63" rx="11.5"/>
-<circle cx="${x + 26}" cy="${y + 32}" r="15" fill="url(#g-au)"/><g fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="translate(${x + 26} ${y + 32})">${glyph}</g>
-<text class="m-t" x="${x + 49}" y="${y + 29}" font-size="13" font-weight="700">${title}</text><text class="m-d" x="${x + 49}" y="${y + 46}" font-size="10">${sub}</text>
-<circle class="m-g" cx="${x + 132}" cy="${y + 8}" r="8" stroke="var(--m-bg)" stroke-width="2"/><path d="M${x + 128.5} ${y + 8}l2.6 2.6 4.4-5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<circle class="m-bg" cx="${x}" cy="${y + 32}" r="4" stroke="var(--m-a)" stroke-width="1.6"/><circle class="m-bg" cx="${x + 140}" cy="${y + 32}" r="4" stroke="var(--m-a)" stroke-width="1.6"/></g>`;
-  const link = (d) => `<path class="flow" d="${d}" fill="none" stroke="var(--m-a)" stroke-width="2" stroke-dasharray="5 6" stroke-linecap="round" opacity=".75"/>`;
-  return `<svg viewBox="0 0 640 480" preserveAspectRatio="xMidYMid slice">${w.defs}
-<defs><pattern id="dots-au" width="20" height="20" patternUnits="userSpaceOnUse"><circle class="m-d" cx="2" cy="2" r="1" opacity=".35"/></pattern></defs>${w.base}
-<g clip-path="url(#c-au)">
-  <rect class="m-s" x="24" y="24" width="592" height="40"/>${w.dots}
-  <text class="m-t" x="96" y="49" font-size="12" font-weight="600">Order alerts</text>
-  <rect class="m-g" x="540" y="35" width="34" height="18" rx="9" opacity=".9"/><circle cx="565" cy="44" r="6.5" fill="#fff"/><text class="m-d" x="526" y="48" font-size="10" text-anchor="end">Active</text>
-  <rect x="24" y="64" width="592" height="336" fill="url(#dots-au)"/>
-  ${link("M184 234H230")}${link("M370 234C408 234 400 134 440 134")}${link("M370 234C408 234 400 334 440 334")}
-  ${node(44, 202, "Webhook", "POST /order", '<path d="M2-8l-7 10h6l-2 8 8-11H2z"/>')}
-  ${node(230, 202, "Filter", "amount &gt; 100", '<path d="M-7-6h14l-5 6v6l-4 2V0z"/>')}
-  ${node(440, 102, "Discord", "send message", '<path d="M-7-5h14v9h-8l-4 3v-3h-2z"/>')}
-  ${node(440, 302, "Sheets", "append row", '<path d="M-7-6h14v12h-14zM-7-1h14M-7 3h14M-1-6v12"/>')}
-  <rect class="m-s" x="24" y="400" width="592" height="56"/><circle class="m-g" cx="48" cy="428" r="4"/>
-  <text class="m-t" x="60" y="432" font-size="11">Last run</text><text class="m-d" x="120" y="432" font-size="11">· 4/4 steps · 1.2s</text>
-  <rect x="520" y="414" width="76" height="28" rx="14" fill="url(#g-au)"/><text x="558" y="432" font-size="11" font-weight="600" text-anchor="middle" fill="#fff">Run now</text>
-</g>${w.edge}</svg>`;
-})();
+const automation = `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<defs><pattern id="dt-a" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".8" fill="currentColor" opacity=".25"/></pattern></defs>
+<rect class="sf" x="16.500" y="16.500" width="367" height="267"/><rect x="17" y="41" width="366" height="226" fill="url(#dt-a)"/>
+<path class="st" d="M16 40.500H384M16 267.500H384"/>${T(28, 32, 8.5, 0.6, 'letter-spacing="1"')}WORKFLOW / ORDER-SYNC</text>${T(372, 32, 8.5, 0.6, 'text-anchor="end"')}● ACTIVE</text>
+${wire("M117 150H147")}${wire("M239 150H253Q257 150 257 146V86Q257 82 261 82H275")}${wire("M239 150H253Q257 150 257 154V214Q257 218 261 218H275")}
+${node(25, 129, "Trigger", "webhook", '<path d="M-3-5l-3 6h6l-3 6"/>')}
+${node(147, 129, "Transform", "map fields", '<path d="M-5-3h10M-5 3h10M-2-5l-3 2 3 2M2 1l3 2-3 2"/>')}
+${node(275, 61, "Notify", "send message", '<path d="M-5-4h10v7h-5l-3 3v-3h-2z"/>')}
+${node(275, 197, "Store", "write row", '<path d="M-5-4h10v9h-10zM-5 0h10M-1-4v9"/>')}
+${T(372, 255, 8, 0.5, 'text-anchor="end"')}4 nodes · 1.2s</text>${T(28, 255, 8, 0.5)}● run #0142 · ok</text>
+<rect class="st" x="16.500" y="16.500" width="367" height="267"/></svg>`;
 
-const web3 = (() => {
-  const w = win("w3", 24, 24, 552, 352);
-  const stat = (x, label, value) =>
-    `<rect class="m-s" x="${x}" y="78" width="164" height="58" rx="10"/><text class="m-d" x="${x + 14}" y="98" font-size="10">${label}</text><text class="m-t" x="${x + 14}" y="124" font-size="17" font-weight="700">${value}</text>`;
-  const tx = (y, hash, value, age) =>
-    `<circle cx="274" cy="${y + 16}" r="8" fill="url(#g-w3)"/><text class="m-t" x="292" y="${y + 20}" font-size="11">${hash}</text>
-<text class="m-t" x="546" y="${y + 14}" font-size="11" font-weight="600" text-anchor="end">${value}</text><text class="m-d" x="546" y="${y + 28}" font-size="9" text-anchor="end">${age}</text><rect class="m-ln" x="262" y="${y + 36}" width="298" height="0.6"/>`;
-  return `<svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice">${w.defs}${w.base}
-<g clip-path="url(#c-w3)">
-  <rect class="m-s" x="24" y="24" width="552" height="42"/>
-  <path d="M50 36l9 5v10l-9 5-9-5V41z" fill="url(#g-w3)"/><text class="m-t" x="68" y="50" font-size="13" font-weight="700">Explorer</text>
-  <rect class="m-s2" x="180" y="34" width="240" height="22" rx="11"/><text class="m-d" x="196" y="49" font-size="10">Search address / tx hash</text>
-  <rect class="m-s2" x="466" y="34" width="88" height="22" rx="11"/><circle class="m-g" cx="482" cy="45" r="3.5"/><text class="m-t" x="492" y="49" font-size="10">Mainnet</text>
-  ${stat(44, "Latest block", "19,482,310")}${stat(220, "Gas price", "14 gwei")}${stat(396, "Txns (24h)", "1.18M")}
-  <rect class="m-s" x="44" y="150" width="198" height="206" rx="10"/><text class="m-t" x="58" y="174" font-size="11" font-weight="600">Activity</text><text class="m-d" x="190" y="174" font-size="9">7d</text>
-  <path d="M58 320L82 296l24 12 28-34 26 16 28-44 22 18 8-20v76z" fill="url(#v-w3)"/>
-  <path d="M58 320L82 296l24 12 28-34 26 16 28-44 22 18 8-20" fill="none" stroke="var(--m-a)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect class="m-ln" x="58" y="338" width="170" height="0.6"/>
-  <rect class="m-s" x="254" y="150" width="306" height="206" rx="10"/><text class="m-t" x="274" y="174" font-size="11" font-weight="600">Latest transactions</text>
-  ${tx(184, "0x7a3f…c91e", "1.25 ETH", "12s ago")}${tx(220, "0x91bc…07aa", "0.08 ETH", "24s ago")}${tx(256, "0xd402…5be3", "3.60 ETH", "41s ago")}${tx(292, "0x03ee…a1f8", "0.52 ETH", "58s ago")}
-</g>${w.edge}</svg>`;
-})();
+const bars = [34, 52, 40, 66, 48, 78, 58, 90, 70, 100, 82, 94]
+  .map((h, i) => `<rect class="bar" style="--i:${i}" x="${26 + i * 11.4}" y="${252 - h}" width="7" height="${h}" fill="currentColor" opacity="${0.35 + (i % 3) * 0.2}"/>`)
+  .join("");
+const block = (x, n, t) =>
+  `<rect class="st sf" x="${x + 0.5}" y="64.500" width="70" height="40"/>${T(x + 8, 80, 8.5, 1, 'font-weight="600"')}#${n}</text>${T(x + 8, 93, 8, 0.5)}${t}</text><path class="st" d="M${x + 70} 84.500h8"/>`;
+const tx = (y, h, v) =>
+  `<circle class="st" cx="190" cy="${y + 9}" r="5"/>${T(202, y + 12, 9, 0.9)}${h}</text>${T(366, y + 12, 9, 0.9, 'text-anchor="end"')}${v}</text><path class="st" d="M178 ${y + 22.5}H370" opacity=".6"/>`;
+
+const web3 = `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<defs><clipPath id="cp-3"><rect x="17" y="60" width="366" height="52"/></clipPath></defs>
+<rect class="sf" x="16.500" y="16.500" width="367" height="267"/><path class="st" d="M16 40.500H384"/>
+<path d="M30 21l7 4v8l-7 4-7-4v-8z" fill="none" stroke="currentColor" stroke-width="1.2"/>${T(44, 33, 10, 1, 'font-weight="600"')}Explorer</text>
+<rect class="st" x="140.500" y="22.500" width="150" height="14"/>${T(150, 32.500, 8, 0.45)}Search address / tx hash</text>${T(372, 33, 8, 0.6, 'text-anchor="end"')}● Mainnet</text>
+<g clip-path="url(#cp-3)"><g class="strip">${block(26, "19,482,308", "9 txs")}${block(104, "19,482,309", "14 txs")}${block(182, "19,482,310", "12 txs")}${block(260, "19,482,311", "11 txs")}${block(338, "19,482,312", "10 txs")}</g></g>
+${T(26, 126, 8, 0.5, 'letter-spacing="1"')}ACTIVITY · 7D</text>${bars}<path class="st" d="M24 252.500H162"/>
+${T(178, 126, 8, 0.5, 'letter-spacing="1"')}LATEST TRANSACTIONS</text>
+<rect class="rowhl" x="178" y="135" width="192" height="22" fill="currentColor" opacity=".08"/>
+${tx(136, "0x7a3f…c91e", "1.25 ETH")}${tx(160, "0x91bc…07aa", "0.08 ETH")}${tx(184, "0xd402…5be3", "3.60 ETH")}${tx(208, "0x03ee…a1f8", "0.52 ETH")}${tx(232, "0xb7c1…92d0", "0.97 ETH")}
+<rect class="st" x="16.500" y="16.500" width="367" height="267"/></svg>`;
 
 export const serviceArt = { web, software, automation, web3 };
