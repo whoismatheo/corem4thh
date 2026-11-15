@@ -9,6 +9,7 @@ Static website for an independent digital studio. Plain HTML, CSS and JavaScript
 - `js/content.js`: editable list of services
 - `js/i18n/`: one file per language plus `index.js` (language list, lookup and DOM update)
 - `js/components.js`, `js/icons.js`: services, technologies and the four monochrome interface illustrations (inline SVG)
+- `js/logos.js`: monochrome technology logos (inline SVG, follow the theme color); add one per technology in `js/content.js`
 - `js/schematic.js`: hero engineering schematic (SVG, generated)
 - `js/motion.js`: hero sequence and pointer response, nav indicator, reveals, cursor ring, touch states
 - `js/theme.js`: light and dark switch with a saved preference

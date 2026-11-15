@@ -50,10 +50,10 @@ test("brand names are not translated", () => {
   }
 });
 
-test("stack is exactly the requested technologies and every group has a label", () => {
+test("stack is exactly the requested technologies (plus Python) and every group has a label", () => {
   assert.deepEqual(
     stack.map((group) => group.items),
-    [["HTML", "CSS", "JavaScript"], ["Supabase"], ["Git", "GitHub", "Vercel"], ["APIs"]],
+    [["HTML", "CSS", "JavaScript"], ["Supabase", "Python"], ["Git", "GitHub", "Vercel"], ["APIs"]],
   );
   for (const { code, dictionary } of languages) {
     for (const group of stack) assert.ok(dictionary.stack.groups[group.id], `${code}:${group.id}`);
@@ -74,4 +74,9 @@ test("hero headline and fixed copy stay intact in English", () => {
   assert.equal(en.hero.label, "INDEPENDENT DEVELOPER / DIGITAL ENGINEERING");
   assert.equal(en.hero.text, "Digital solutions, built with purpose.");
   assert.equal(en.about.title, "A little about me.");
+});
+
+test("every technology has a logo", async () => {
+  const { techLogos: techLogo } = await import("../js/logos.js");
+  for (const group of stack) for (const name of group.items) assert.ok(techLogo[name], name);
 });

@@ -2,7 +2,7 @@ export const services = [{ id: "web" }, { id: "software" }, { id: "automation" }
 
 export const stack = [
   { id: "frontend", items: ["HTML", "CSS", "JavaScript"] },
-  { id: "backend", items: ["Supabase"] },
+  { id: "backend", items: ["Supabase", "Python"] },
   { id: "deploy", items: ["Git", "GitHub", "Vercel"] },
   { id: "integrations", items: ["APIs"] },
 ];

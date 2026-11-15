@@ -1,4 +1,5 @@
 import { serviceArt } from "./icons.js";
+import { techLogos } from "./logos.js";
 
 const escapeHtml = (value) =>
   String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -18,7 +19,7 @@ export const techGroup = (group, groupIndex, offset) => `
   <ul class="tech-list">${group.items
     .map(
       (name, k) =>
-        `<li style="--i:${k}"><span class="ti">${pad(offset + k)}</span><span class="tn">${escapeHtml(name)}</span></li>`,
+        `<li style="--i:${k}"><span class="ti">${pad(offset + k)}</span><span class="tl">${techLogos[name] ?? ""}</span><span class="tn">${escapeHtml(name)}</span></li>`,
     )
     .join("")}</ul>
 </div>`;
