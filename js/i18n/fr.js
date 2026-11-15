@@ -1,17 +1,16 @@
 export default {
   meta: {
     title: "corem4thh — fait pour explorer.",
-    description: "studio numérique indépendant qui conçoit logiciels, automatisations et outils décentralisés avec soin.",
+    description: "sites web, logiciels, automatisation et web3 par m4thh, développeur indépendant.",
   },
-  nav: { label: "principal", home: "accueil", services: "services", contact: "contact", menuOpen: "ouvrir le menu", menuClose: "fermer le menu", language: "langue", skip: "aller au contenu" },
+  nav: { label: "principal", home: "accueil", services: "services", about: "à propos", contact: "contact", menuOpen: "ouvrir le menu", menuClose: "fermer le menu", language: "langue", skip: "aller au contenu" },
   social: { discord: "profil discord", github: "profil github" },
   theme: { toLight: "passer au thème clair", toDark: "passer au thème sombre" },
   hero: {
     status: "ouvert aux nouveaux projets",
     title: "fait pour explorer.",
-    text: "un studio indépendant qui façonne logiciels, automatisations et outils décentralisés avec soin et intention.",
+    text: "sites web, logiciels, automatisation et web3, conçus avec intention.",
     cta: "explorer les services",
-    hint: "bougez le curseur pour incliner",
   },
   services: {
     label: "services",
@@ -23,17 +22,11 @@ export default {
       web3: { name: "développement web3", text: "applications décentralisées et intégrations on-chain." },
     },
   },
-  stack: { label: "stack technique", title: "les outils avec lesquels je travaille." },
-  process: {
-    label: "processus",
-    title: "de la première idée à la livraison.",
-    steps: {
-      discover: { name: "découvrir", text: "on discute de l'idée, des objectifs et des contraintes." },
-      plan: { name: "planifier", text: "structure, périmètre et approche technique sont définis." },
-      build: { name: "construire", text: "développement par petites étapes, ajusté en continu." },
-      deliver: { name: "livrer", text: "mise en ligne, passation et soutien pour la suite." },
-    },
+  about: {
+    title: "un peu de moi.",
+    intro: "Je suis m4thh — un développeur indépendant, curieux de technologie, de design et de tout ce qui se trouve entre les deux.",
+    body: "J'aime explorer des idées, expérimenter avec différentes technologies et transformer des concepts en expériences numériques.",
+    closing: "Pour moi, il ne s'agit pas seulement de faire fonctionner les choses. Il s'agit aussi de leur donner le bon ressenti.",
   },
   contact: { label: "contact", title: "une idée en tête\u00a0?", text: "je serais ravi d'en entendre parler." },
-  footer: { note: "conçu avec soin." },
 };

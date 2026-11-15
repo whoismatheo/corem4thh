@@ -1,5 +1,5 @@
 const STORAGE_KEY = "corem-theme";
-const COLORS = { dark: "#080909", light: "#e8ebed" };
+const COLORS = { dark: "#07070c", light: "#f4f3fa" };
 
 export function initTheme(onChange) {
   const root = document.documentElement;

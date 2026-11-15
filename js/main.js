@@ -1,8 +1,7 @@
-import { processItem, serviceItem, stackItem } from "./components.js";
-import { services, stack, workflow } from "./content.js";
+import { serviceItem } from "./components.js";
+import { services } from "./content.js";
 import { applyLanguage, saveLanguage, storedLanguage, translate } from "./i18n/index.js";
 import { initLanguageMenu } from "./lang-menu.js";
-import { startSculpture } from "./sculpture.js";
 import { initTheme } from "./theme.js";
 
 const root = document.documentElement;
@@ -14,9 +13,6 @@ const fill = (id, items, render) => {
 };
 
 fill("services-list", services, serviceItem);
-fill("process-list", workflow, processItem);
-fill("stack-list", stack, stackItem);
-if (!stack.length) document.getElementById("stack")?.remove();
 
 document.getElementById("year").textContent = String(new Date().getFullYear());
 
@@ -24,7 +20,6 @@ const header = document.querySelector(".site-header");
 const toggle = document.querySelector(".menu-toggle");
 const themeButton = document.querySelector(".theme-btn");
 let language = storedLanguage();
-let sculpture = null;
 
 const syncLabels = () => {
   const open = header.classList.contains("open");
@@ -53,10 +48,7 @@ function setLanguage(code) {
   document.body.classList.add("swap-in");
 }
 
-initTheme((mode) => {
-  sculpture?.setLight(mode === "light");
-  syncLabels();
-});
+initTheme(syncLabels);
 
 applyLanguage(language);
 syncLabels();
@@ -97,22 +89,15 @@ document.querySelectorAll(".reveal").forEach((element, index) => {
   reveal.observe(element);
 });
 
-const art = document.querySelector(".hero-art");
-sculpture = startSculpture(document.getElementById("sculpture"));
-if (sculpture) sculpture.setLight(root.dataset.theme === "light");
-else art.classList.add("no-webgl");
-
-const hero = document.getElementById("home");
-if (sculpture && !motion.matches && window.matchMedia("(hover: hover)").matches) {
-  const aim = (x, y) => {
-    sculpture.setPointer(x, -y);
-    hero.style.setProperty("--mx", x.toFixed(3));
-    hero.style.setProperty("--my", y.toFixed(3));
-  };
-  hero.addEventListener("pointermove", (event) => {
-    const box = hero.getBoundingClientRect();
-    const clamp = (value) => Math.max(-1, Math.min(1, value));
-    aim(clamp(((event.clientX - box.left) / box.width) * 2 - 1), clamp(((event.clientY - box.top) / box.height) * 2 - 1));
-  });
-  hero.addEventListener("pointerleave", () => aim(0, 0));
+const ambient = document.querySelector(".ambient");
+let queued = false;
+const drift = () => {
+  queued = false;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  ambient.style.setProperty("--p", (max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0).toFixed(4));
+};
+if (ambient && !motion.matches) {
+  window.addEventListener("scroll", () => !queued && ((queued = true), requestAnimationFrame(drift)), { passive: true });
+  window.addEventListener("resize", drift);
+  drift();
 }

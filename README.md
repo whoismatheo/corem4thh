@@ -4,15 +4,14 @@ Static website for an independent digital studio. Plain HTML, CSS and JavaScript
 
 ## Structure
 
-- `index.html`: semantic markup, fixed sections and the SVG icon sprite
-- `css/styles.css`: design tokens, dark and light themes, layout and responsive rules
-- `js/content.js`: editable structure of the services, process steps and tech stack
+- `index.html`: semantic markup, home, services, about me and contact, plus the SVG icon sprite
+- `css/styles.css`: design tokens, dark and light themes, the Living Gradient (`.ambient`), layout and responsive rules
+- `js/content.js`: editable list of services
 - `js/i18n/`: one file per language plus `index.js` (language list, lookup and DOM update)
-- `js/components.js` and `js/icons.js`: render the content lists and the service illustrations
+- `js/components.js` and `js/icons.js`: render the services and their interface illustrations (inline SVG)
 - `js/theme.js`: light and dark switch with a saved preference
 - `js/lang-menu.js`: accessible language selector
-- `js/sculpture.js`: chrome hero object (WebGL, no libraries), reacts to the cursor and the theme
-- `js/main.js`: wiring, mobile menu, entrance animations and active navigation
+- `js/main.js`: wiring, mobile menu, entrance animations, active navigation and the scroll drift of the Living Gradient
 - `vercel.json`: Vercel configuration (asset caching and headers)
 - `tests/i18n.test.mjs`: checks that every language has the same keys
 
@@ -37,18 +36,18 @@ To add a language:
 
 Every visible string lives in the dictionaries. Elements are bound with `data-i18n="section.key"` and attributes with `data-i18n-attr="aria-label:section.key"`.
 
+## Living Gradient
+
+Five soft radial layers in `.ambient` (fixed, behind all sections). Colors are the `--gc1..5` tokens per theme; drift and opacity animations are 60–150 s and run on the compositor only (transform and opacity). The scroll position shifts the layers through `--p`. Disabled with `prefers-reduced-motion`.
+
 ## Themes
 
 Dark is the default. The choice is stored in `localStorage` (`corem-theme`) and applied by an inline script in `<head>` before the first paint, so there is no flash.
 
 ## Editing content
 
-- Services and process steps: ids live in `js/content.js`, their texts in each language file.
-- Tech stack: the `stack` array in `js/content.js` is intentionally empty. While it is empty the section is not rendered. Only add technologies you genuinely work with, for example:
-
-      { name: "javascript", glyph: "js" }
-
-  Its heading is translated through `stack.label` and `stack.title`.
+- Services: ids live in `js/content.js`, their texts in each language file; each id needs an illustration in `js/icons.js`.
+- About me: `about.*` keys in every dictionary.
 - Discord and GitHub: the two profile links appear only as icons, in the navbar and in the contact section. Update the URLs in `index.html`.
 
 ## Fonts
